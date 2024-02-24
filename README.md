@@ -1,1 +1,1 @@
-Kotoba
+Kotoba chat app
