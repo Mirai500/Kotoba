@@ -109,3 +109,46 @@ export default function Home() {
 			return unsub;
 		}
 	}, [receiverData?.userId]);
+
+	const sendMessage = async () => {
+		try {
+			if (user && receiverData) {
+				await addDoc(
+					collection(
+						db,
+						"users",
+						user.uid,
+						"chatUsers",
+						receiverData.userId,
+						"messages"
+					),
+					{
+						username: user.displayName,
+						messageUserId: user.uid,
+						message: chatMessage,
+						timestamp: new Date(),
+					}
+				);
+
+				await addDoc(
+					collection(
+						db,
+						"users",
+						receiverData.userId,
+						"chatUsers",
+						user.uid,
+						"messages"
+					),
+					{
+						username: user.displayName,
+						messageUserId: user.uid,
+						message: chatMessage,
+						timestamp: new Date(),
+					}
+				);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+		setChatMessage("");
+	};
