@@ -63,3 +63,49 @@ function UsersComponent(props) {
 		</List>
 	);
 }
+
+export default function Home() {
+	const [users, setUsers] = useState([]);
+
+	const [receiverData, setReceiverData] = useState(null);
+	const [chatMessage, setChatMessage] = useState("");
+
+	const [allMessages, setAllMessages] = useState([]);
+
+	const user = auth.currentUser;
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const unsub = onSnapshot(collection(db, "users"), (snapshot) => {
+			setUsers(snapshot.docs.map((doc) => doc.data()));
+		});
+		return unsub;
+	}, []);
+
+	useEffect(() => {
+		if (receiverData) {
+			const unsub = onSnapshot(
+				query(
+					collection(
+						db,
+						"users",
+						user?.uid,
+						"chatUsers",
+						receiverData?.userId,
+						"messages"
+					),
+					orderBy("timestamp")
+				),
+				(snapshot) => {
+					setAllMessages(
+						snapshot.docs.map((doc) => ({
+							id: doc.id,
+							messages: doc.data(),
+						}))
+					);
+				}
+			);
+			return unsub;
+		}
+	}, [receiverData?.userId]);
