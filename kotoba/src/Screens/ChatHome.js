@@ -152,3 +152,21 @@ export default function Home() {
 		}
 		setChatMessage("");
 	};
+
+	return (
+		<div style={root}>
+			<Paper style={left}>
+				<div
+					style={{
+						display: "flex",
+						padding: 5,
+						justifyContent: "space-between",
+					}}
+				>
+					<h4 style={{ margin: 0 }}>{user?.displayName} </h4>
+					<Button
+						color="secondary"
+						onClick={() => {
+							auth.signOut();
+							navigate("/");
+						}}
