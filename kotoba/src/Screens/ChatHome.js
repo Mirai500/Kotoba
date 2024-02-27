@@ -170,7 +170,7 @@ export default function Home() {
 							auth.signOut();
 							navigate("/");
 						}}
->
+					>
 						Logout
 					</Button>
 				</div>
@@ -208,7 +208,7 @@ export default function Home() {
 												? "row-reverse"
 												: "row",
 									}}
-									>
+								>
 									<span
 										style={{
 											backgroundColor: "#BB8FCE",
@@ -230,4 +230,61 @@ export default function Home() {
 								</div>
 							);
 						})}
-				</div>												
+				</div>
+
+				<div style={{ width: "100%", display: "flex", flex: 0.08 }}>
+					<input
+						value={chatMessage}
+						onChange={(e) => setChatMessage(e.target.value)}
+						style={input}
+						type="text"
+						placeholder="Type message..."
+					/>
+					<IconButton onClick={sendMessage}>
+						<SendIcon style={{ margin: 10 }} />
+					</IconButton>
+				</div>
+			</Paper>
+		</div>
+	);
+}
+
+const root = {
+	display: "flex",
+	flexDirection: "row",
+	flex: 1,
+	width: "100%",
+};
+
+const left = {
+	display: "flex",
+	flex: 0.2,
+	height: "95vh",
+	margin: 10,
+	flexDirection: "column",
+};
+
+const right = {
+	display: "flex",
+	flex: 0.8,
+	height: "95vh",
+	margin: 10,
+	flexDirection: "column",
+};
+
+const input = {
+	flex: 1,
+	outline: "none",
+	borderRadius: 5,
+	border: "none",
+};
+
+const messagesDiv = {
+	backgroundColor: "#FBEEE6",
+	padding: 5,
+	display: "flex",
+	flexDirection: "column",
+	flex: 1,
+	maxHeight: 460,
+	overflowY: "scroll",
+};
