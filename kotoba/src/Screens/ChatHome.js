@@ -208,4 +208,26 @@ export default function Home() {
 												? "row-reverse"
 												: "row",
 									}}
-													
+									>
+									<span
+										style={{
+											backgroundColor: "#BB8FCE",
+											padding: 6,
+											borderTopLeftRadius:
+												user?.uid == messages.messageUserId ? 10 : 0,
+											borderTopRightRadius:
+												user?.uid == messages.messageUserId ? 0 : 10,
+											borderBottomLeftRadius: 10,
+											borderBottomRightRadius: 10,
+											maxWidth: 400,
+											fontSize: 15,
+											textAlign:
+												user?.uid == messages.messageUserId ? "right" : "left",
+										}}
+									>
+										{messages.message}
+									</span>
+								</div>
+							);
+						})}
+				</div>												
