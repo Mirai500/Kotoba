@@ -170,3 +170,42 @@ export default function Home() {
 							auth.signOut();
 							navigate("/");
 						}}
+>
+						Logout
+					</Button>
+				</div>
+				<Divider />
+				All users
+				<div style={{ overflowY: "scroll" }}>
+					<UsersComponent
+						users={users}
+						setReceiverData={setReceiverData}
+						navigate={navigate}
+						currentUserId={user?.uid}
+					/>
+				</div>
+			</Paper>
+
+			<Paper style={right}>
+				<h4 style={{ margin: 2, padding: 10 }}>
+					{receiverData ? receiverData.username : user?.displayName}{" "}
+				</h4>
+
+				<Divider />
+				<div style={messagesDiv}>
+					{/* messages area */}
+
+					{allMessages &&
+						allMessages.map(({ id, messages }) => {
+							return (
+								<div
+									key={id}
+									style={{
+										margin: 2,
+										display: "flex",
+										flexDirection:
+											user?.uid == messages.messageUserId
+												? "row-reverse"
+												: "row",
+									}}
+													
