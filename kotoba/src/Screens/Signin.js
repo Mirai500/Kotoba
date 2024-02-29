@@ -37,7 +37,7 @@ export default function SignIn() {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 
-				alert(errorMessage);
+				alert("Invalid email address or password");
 			});
 	};
 
