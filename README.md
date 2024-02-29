@@ -7,6 +7,9 @@ After login, users are redirected to the chat page where they can see other regi
 To run the app:
 
 Clone the repository.
+
 Navigate to kotoba ("cd kotoba").
+
 Run "npm install" command to install dependencies.
+
 Run npm start.
